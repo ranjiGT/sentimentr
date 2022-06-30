@@ -37,7 +37,7 @@
 #'     sentiment_by(review, review_id) %>%
 #'     highlight()
 #' }
-highlight <- function(x, file = file.path(tempdir(), "polarity.html"),
+highlight <- function(x, file = file.path(tempdir(), "highlights.html"),
     open = TRUE, digits = 3, ...){
 
     polarity <- grouping.var <- NULL
@@ -71,7 +71,7 @@ highlight <- function(x, file = file.path(tempdir(), "polarity.html"),
     y[, grouping.var:= eval(mygrps)]
 
     y[, txt := sprintf("<h1>%s: <em><span style=\"color: %s\">%s</span></em></h1><p class=\"indented\">%s</p>",
-        grouping.var, ifelse(sentiment < 0, "red", ifelse(sentiment > 0, "green", "#D0D0D0")), formdig(sentiment, digits), txt)]
+        grouping.var, ifelse(sentiment < 0, "red", ifelse(sentiment > 0, "green", "#00FFFF")), formdig(sentiment, digits), txt)]
 
     body <- gsub(" rsreplacers", "", paste(y[["txt"]], collapse="\n"))
 
@@ -112,7 +112,7 @@ formdig <- function(x, digits) {
 
 html <- c(
     "<!DOCTYPE html>", "<html lang=\"en\">", "", "<head>", "<meta charset=\"utf-8\">",
-    "<title>Polarity</title>", "</head>", "", "<style>",
+    "<title>ShiftHighlighter</title>", "</head>", "", "<style>",
     "mark.pos {", "    background-color: lightgreen;", "    color: black;",
     "}", "", "mark.neg{", "    background-color: pink;", "    color: black;",
     "}", "%s", "</style>", "", "<body>", "", "%s", "", "</body>", "", "</html>\n"
