@@ -49,7 +49,7 @@ highlight <- function(x, file = file.path(tempdir(), "highlights.html"),
     grps <- attributes(x)[["groups"]]
 
     data.table::setDT(y)
-    y[, polarity := ifelse(sentiment > 0, "pos", ifelse(sentiment < 0, "neg", ""))][,
+    y[, polarity := ifelse(sentiment > 0, "pos", ifelse(sentiment < 0, "neg", "sft"))][,
         polarity := ifelse(is.na(polarity), "", polarity)]
 
     txt <- get_sentences(x)
@@ -71,7 +71,7 @@ highlight <- function(x, file = file.path(tempdir(), "highlights.html"),
     y[, grouping.var:= eval(mygrps)]
 
     y[, txt := sprintf("<h1>%s: <em><span style=\"color: %s\">%s</span></em></h1><p class=\"indented\">%s</p>",
-        grouping.var, ifelse(sentiment < 0, "red", ifelse(sentiment > 0, "green", "#00FFFF")), formdig(sentiment, digits), txt)]
+        grouping.var, ifelse(sentiment < 0, "red", ifelse(sentiment > 0, "green", "#D0D0D0")), formdig(sentiment, digits), txt)]
 
     body <- gsub(" rsreplacers", "", paste(y[["txt"]], collapse="\n"))
 
@@ -113,7 +113,8 @@ formdig <- function(x, digits) {
 html <- c(
     "<!DOCTYPE html>", "<html lang=\"en\">", "", "<head>", "<meta charset=\"utf-8\">",
     "<title>ShiftHighlighter</title>", "</head>", "", "<style>",
-    "mark.pos {", "    background-color: lightgreen;", "    color: black;",
+    "mark.sft {", "    background-color: lightblue;", "    color: black;",
+    "}", "", "mark.pos {", "    background-color: lightgreen;", "    color: black;",
     "}", "", "mark.neg{", "    background-color: pink;", "    color: black;",
     "}", "%s", "</style>", "", "<body>", "", "%s", "", "</body>", "", "</html>\n"
 )
