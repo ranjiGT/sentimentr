@@ -71,7 +71,7 @@ highlight <- function(x, file = file.path(tempdir(), "highlights.html"),
     y[, grouping.var:= eval(mygrps)]
 
     y[, txt := sprintf("<h1>%s: <em><span style=\"color: %s\">%s</span></em></h1><p class=\"indented\">%s</p>",
-        grouping.var, ifelse(sentiment < 0, "red", ifelse(sentiment > 0, "green", "#D0D0D0")), formdig(sentiment, digits), txt)]
+        grouping.var, ifelse(sentiment < 0, "blue", ifelse(sentiment > 0, "blue", "#D0D0D0")), formdig(sentiment, digits), txt)]
 
     body <- gsub(" rsreplacers", "", paste(y[["txt"]], collapse="\n"))
 
