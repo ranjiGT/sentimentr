@@ -113,7 +113,7 @@ formdig <- function(x, digits) {
 html <- c(
     "<!DOCTYPE html>", "<html lang=\"en\">", "", "<head>", "<meta charset=\"utf-8\">",
     "<title>ShiftHighlighter</title>", "</head>", "", "<style>",
-    "mark.sft {", "    background-color: blue;", "    color: black;",
+    "mark.sft {", "    background-color: lightblue;", "    color: black;",
     "}", "", "mark.pos {", "    background-color: lightgreen;", "    color: black;",
     "}", "", "mark.neg{", "    background-color: pink;", "    color: black;",
     "}", "%s", "</style>", "", "<body>", "", "%s", "", "</body>", "", "</html>\n"
